@@ -1,0 +1,27 @@
+{
+  "name": "express-server-modele",
+  "version": "1.0.0",
+  "description": "Base modèle server Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BertrandPeltier/Express-server-modele.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express"
+  ],
+  "author": "Bertrand Peltier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BertrandPeltier/Express-server-modele/issues"
+  },
+  "homepage": "https://github.com/BertrandPeltier/Express-server-modele#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
