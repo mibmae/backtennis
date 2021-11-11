@@ -13,6 +13,12 @@ module.exports = {
         const { id } = request.params;
         try {
             const data = await dataMapper.findById(id);
+            if (data.length === 0) {
+                response.status(400).json({
+                    message: 'Bad request',
+                    detail: 'Invalid id'
+                })
+            }
             response.status(200).json({data});
         } catch (error) {
             next(error);

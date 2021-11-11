@@ -10,12 +10,13 @@ const client = [
     }
 ];
 
-//TODO POSTGRESQL
+//TODO with PostgresQL
 /**
  * npm install pg
  * .env
  ** DATABASE_URL
  */
+
 // const { Pool } = require('pg');
 
 // const client = new Pool({
@@ -26,7 +27,7 @@ const client = [
 // });
 
 
-//TODO MYSQL
+//TODO with MySQL
 /**
  * npm install mysql2
  * .env
