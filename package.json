@@ -4,7 +4,7 @@
   "description": "Base modèle server Express",
   "main": "app.js",
   "scripts": {
-    "test": "none"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
