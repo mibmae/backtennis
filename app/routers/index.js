@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const baseUrl = process.env.BASE_URL;
 
-const controller = require('../controllers');
+const apiRouter = require('./apiRouter');
 const errorsMiddleware = require('../middlewares/errorsMiddleware');
 
 router.get(`${baseUrl}/`, (_, response) => {
@@ -11,7 +11,7 @@ router.get(`${baseUrl}/`, (_, response) => {
     });
 });
 
-router.get(`${baseUrl}/findall`, controller.findAll);
+router.use(`/${baseUrl}api`, apiRouter);
 
 router.use(errorsMiddleware.error404);
 router.use(errorsMiddleware.error500);
