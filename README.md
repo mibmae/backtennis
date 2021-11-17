@@ -2,6 +2,12 @@
 
 Il s'agit d'un modèle d'une API Rest Nodejs/Express
 
+## Quick start
+```npm install```
+
+Dans le fichier [client.js](./app/dataMappers/client.js), se trouve la TODO selon si l'on veut brancher l'API sur une BDD MySQL ou PostgresQL.
+En l'état l'API fonctionne avec des fake data.
+
 ## Structure :
 
 ### Le point d'entrée de l'API : ```app.js```
