@@ -22,6 +22,7 @@
   "homepage": "https://github.com/BertrandPeltier/Express-server-modele#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sanitizer": "^0.1.3"
   }
 }
