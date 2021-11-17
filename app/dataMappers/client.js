@@ -1,14 +1,5 @@
-// Fake client
-const client = [
-    {
-        id: 1,
-        data: "data1"
-    },
-    {
-        id: 2,
-        data: "data2"
-    }
-];
+// Fake client avec de la fake data
+const client = require('./fakeData');
 
 //TODO with PostgresQL
 /**

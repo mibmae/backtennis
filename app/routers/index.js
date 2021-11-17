@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 const baseUrl = process.env.BASE_URL;
 
-const apiRouter = require('./apiRouter');
+const userRouter = require('./userRouter');
 const errorsMiddleware = require('../middlewares/errorsMiddleware');
 
 // Route test
@@ -16,7 +16,7 @@ router.get(`${baseUrl}/`, (_, response) => {
 });
 
 // Routing vers les routers secondaires
-router.use(`${baseUrl}/api`, apiRouter);
+router.use(`${baseUrl}/user`, userRouter);
 
 // Gestion des erreurs 404 et 500
 router.use(errorsMiddleware.error404);
