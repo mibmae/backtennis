@@ -1,5 +1,5 @@
 // Fake client avec de la fake data
-const client = require('./fakeData');
+const client = require('../fakeData/fakeData');
 
 //TODO with PostgresQL
 /**

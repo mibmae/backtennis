@@ -1,9 +1,9 @@
-const dataMapper = require('../dataMappers');
+const userDataMapper = require('../dataMappers/userDataMapper');
 
 module.exports = {
     async findAll(_, response, next) {
         try {
-            const data = await dataMapper.findAll();
+            const data = await userDataMapper.findAll();
             response.status(200).json({data});
         } catch (error) {
             next(error);
@@ -12,7 +12,7 @@ module.exports = {
     async findById(request, response, next) {
         const { id } = request.params;
         try {
-            const data = await dataMapper.findById(id);
+            const data = await userDataMapper.findById(id);
             if (data.length === 0) {
                 response.status(400).json({
                     message: 'Bad request',

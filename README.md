@@ -6,6 +6,12 @@ Il s'agit d'un modèle d'une API Rest Nodejs/Express
 
 1. **Installation des modules**
 ```npm install```
+    - Express
+    - dotenv
+    - argon2 : Chiffrage des mots de passe
+    - joi : Validation du body
+    - sanitizer : "Nettoyage" du body
+    - jsonwebtoken : Gestion des token
 
 2. **Configuration du client BDD**
 Dans le fichier [client.js](./app/dataMappers/client.js), se trouve la TODO selon si l'on veut brancher l'API sur une BDD MySQL ou PostgresQL.
@@ -28,15 +34,15 @@ FindById : [http://localhost:3000/user/1](http://localhost:3000/user/1)
 
 2. **Les routers**
 Ils s'occupent du routing (1 route appelle une méthode d'un controller), il est possible de les décomposer en un index (router principal) et des routers secondaires.
-Exemple : un router qui gère les routes "user", un autre pour les "article", etc...
+Exemple : un router qui gère les routes "user", un autre pour l'authentification, etc...
 
 3. **Les controllers**
 Leurs méthodes s'exécutent selon la route demandée. Methodes qui généralement (mais ce n'est pas obligé), peuvent demander des Data par l'intermédaire des dataMappers. Ensuite les controllers traitent ces Data et les renvoient au client.
-NB : même chose que les routers, il est possible de les "spliter" : un controller pour les routes "user", un pour les "articles", etc...
+NB : même chose que les routers, il est préférable de spliter les controllers : un pour les routes "user", un autre pour l'authentification, etc...
 
 4. **Les dataMappers**
 Leur rôle est d'aller chercher des Data dans une BDD. Ils utilisent le ```client.js``` pour s'y connecter. Ils retounenent les Data aux controllers, ils ne les traitent pas.
-NB : même chose que les routers & controller, il est possible de les "spliter" : un dataMapper pour les routes "user", un pour les "articles", etc...
+NB : même chose que les routers et les controllers, il est préférable de spliter les dataMappers : un pour les routes "user", un autre pour l'authentification, etc...
 
 ## Les middlewares spéciaux
 

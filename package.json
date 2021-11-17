@@ -21,9 +21,11 @@
   },
   "homepage": "https://github.com/BertrandPeltier/Express-server-modele#readme",
   "dependencies": {
+    "argon2": "^0.28.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
     "sanitizer": "^0.1.3"
   }
 }

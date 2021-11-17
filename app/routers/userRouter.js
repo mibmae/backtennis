@@ -4,10 +4,10 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers');
+const userController = require('../controllers/userController');
 
 // Routing
-router.get('/all', controller.findAll);
-router.get('/:id(\\d+)', controller.findById);
+router.get('/all', userController.findAll);
+router.get('/:id(\\d+)', userController.findById);
 
 module.exports = router;
