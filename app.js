@@ -2,12 +2,15 @@ require('dotenv').config();
 const express = require('express');
 
 const routers = require('./app/routers');
+const bodySanitizer = require('./app/middlewares/bodySanitizer');
 
 const app = express();
 app.use(express.urlencoded({extended:true}));
 
 app.use(express.json());
 app.use(routers);
+// Middleware permettant de "nettoyer" le body = écarte les caractères HTML
+app.use(bodySanitizer);
 
 // Lancement du server
 const port = process.env.PORT || 3000;
