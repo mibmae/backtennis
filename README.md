@@ -20,13 +20,39 @@ NB : pense à supprimer la logique avec les fakeData !!
 
 3. **Pour démarrer le server** : ```npm start```
 
-## Routes test
+## Routes GET
 
 Welcome : [http://localhost:3000/](http://localhost:3000/)
 
-FindAll : [http://localhost:3000/user/all](http://localhost:3000/user/all)
+- **userRouter**
 
-FindById : [http://localhost:3000/user/1](http://localhost:3000/user/1)
+findAll : [http://localhost:3000/user/all](http://localhost:3000/user/all)
+
+findById : [http://localhost:3000/user/1](http://localhost:3000/user/1)
+
+## Routes POST
+
+- **authRouter**
+
+signup : [http://localhost:3000/auth/signup](http://localhost:3000/auth/signup)
+Body :
+```js
+{
+	"name": "John",
+	"email": "john@gmail.com",
+	"password": "Azerty47!"
+}
+```
+
+
+signin : [http://localhost:3000/auth/signin](http://localhost:3000/auth/signin)
+Body :
+```js
+{
+	"email": "bob@gmail.com",
+	"password": "Azerty47!"
+}
+```
 
 ## Structure
 
@@ -46,7 +72,7 @@ NB : même chose que les routers et les controllers, il est préférable de spli
 
 ## Les middlewares spéciaux
 
- - **errorsMiddleware**
+- **errorsMiddleware**
 
 Il gère les erreurs suivantes :
     - les 404 : aucune route ne correspond à la demande du client
@@ -56,3 +82,17 @@ Il renvoie au client une erreur détaillée.
 - **bodySanitizer**
 
 Il permet de "nettoyer" le body en écartant les caractères HTML = évite les injections de code malveillant.
+
+- **validationMiddleware**
+
+Il permet de contrôler si les éléments du body répondent à certains critères, cf. [userSchema.js](app/middlewares/validationSchema/userSchema.js)
+Ici, l'email et le mot de passe doivent respecter des Regex, cf. [https://regex101.com/](https://regex101.com/).
+
+## Les services
+
+- **tokenHandler**
+
+Il permet de générer ou de vérifier les token.
+
+- **Autre service**
+Ici on pourrait rajouter un service qui gère l'envoie de mail par exemple.
