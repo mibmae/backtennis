@@ -1,3 +1,9 @@
+/**
+ * Variables d'environnement
+ ** JWT_SECRET='le #F0F c'est la cie !' // clé du token
+ ** JWT_TIME_LIMIT='1h' // Durée de validité du token, ici 1 heure ('1d': 1 jour)
+ */
+
 const jsonwebtoken = require('jsonwebtoken');
 
 const secret = process.env.JWT_SECRET;
