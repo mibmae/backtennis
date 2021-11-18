@@ -13,14 +13,15 @@ module.exports = {
                     message: "Registration failed",
                     detail: "Email already in use"
                 });
+            } else {
+                const hashPassword = await argon2.hash(password);
+                const user = await authDataMapper.createUser(name, email, hashPassword);
+                user.token = tokenHandler.generate(user);
+                response.status(201).json({
+                    message: "Registration succed",
+                    created_user: user
+                });
             }
-            const hashPassword = await argon2.hash(password);
-            const user = await authDataMapper.createUser(name, email, hashPassword);
-            user.token = tokenHandler.generate(user);
-            response.status(201).json({
-                message: "Registration succed",
-                created_user: user
-            });
         } catch (error) {
             next(error);
         }        

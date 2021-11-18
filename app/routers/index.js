@@ -18,7 +18,7 @@ router.get(`${baseUrl}/`, (_, response) => {
 
 // Routing vers les routers secondaires
 router.use(`${baseUrl}/user`, userRouter);
-// router.use(`${baseUrl}/auth`, authRouter);
+router.use(`${baseUrl}/auth`, authRouter);
 
 
 // Gestion des erreurs 404 et 500
