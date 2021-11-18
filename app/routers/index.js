@@ -20,7 +20,6 @@ router.get(`${baseUrl}/`, (_, response) => {
 router.use(`${baseUrl}/user`, userRouter);
 router.use(`${baseUrl}/auth`, authRouter);
 
-
 // Gestion des erreurs 404 et 500
 router.use(errorsMiddleware.error404);
 router.use(errorsMiddleware.error500);
