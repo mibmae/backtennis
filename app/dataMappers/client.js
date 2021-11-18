@@ -4,7 +4,7 @@ const client = require('../fakeData/fakeData');
 //TODO with PostgresQL
 /**
  * npm install pg
- * .env
+ * Ajouter dans .env
  ** DATABASE_URL
  */
 
@@ -21,7 +21,7 @@ const client = require('../fakeData/fakeData');
 //TODO with MySQL
 /**
  * npm install mysql2
- * .env
+ * Ajouter dans .env
  ** DB_HOST
  ** DB_USER
  ** DB_PASSWORD
