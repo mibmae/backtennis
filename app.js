@@ -3,8 +3,11 @@ const express = require('express');
 
 const routers = require('./app/routers');
 const bodySanitizer = require('./app/middlewares/bodySanitizer');
+const cors = require('cors');
+
 
 const app = express();
+app.use(cors());
 app.use(express.urlencoded({extended:true}));
 
 app.use(express.json());

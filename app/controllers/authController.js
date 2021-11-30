@@ -28,27 +28,38 @@ module.exports = {
     },
 
     async signin(request, response, next) {
+
         const { email, password } = request.body;
         try {
-            const user = await authDataMapper.findUserByEmail(email);
-            if (!user) {
-                response.status(401).json({
-                    message: "Authentication failed",
-                    detail: "Invalid email"
-                });
-            }
-            if (await argon2.verify(user.password, password)) {
-                user.token = tokenHandler.generate(user);
+            const user = await authDataMapper.findUserByEmail(email, password);
+            if(user) {
                 response.status(200).json({
-                    message: "Authentication succed",    
-                    connected_user: user
-                });
+                    message: "Bienvenue Maître"
+                }
+                );
             } else {
-                response.status(401).json({
-                    message: "Authentication failed",
-                    detail: "Invalid password"
+                response.status(404).json({
+                    message: "Il y a un problème !"
                 });
             }
+            // if (!user) {
+            //     response.status(401).json({
+            //         message: "Authentication failed",
+            //         detail: "Invalid email"
+            //     });
+            // }
+            // if (await argon2.verify(user.password, password)) {
+            //     user.token = tokenHandler.generate(user);
+            //     response.status(200).json({
+            //         message: "Authentication succed",    
+            //         connected_user: user
+            //     });
+            // } else {
+            //     response.status(401).json({
+            //         message: "Authentication failed",
+            //         detail: "Invalid password"
+            //     });
+            // }
         } catch (error) {
             next(error);
         }

@@ -1,9 +1,8 @@
-const client = require('./client');
+const client = require('./clientident');
 
 module.exports = {
 
-    async findUserByEmail(email) {
-        
+    async findUserByEmail(email, password) {      
         // TODO MySQL
         // const data = await client.query(`
         //     SELECT * FROM xxx
@@ -19,7 +18,7 @@ module.exports = {
         // return data.rows[0];
 
         // ** Simulation avec de la fake data
-        const data = client.filter(item => item.email === email);
+        const data = client.filter(item => item.email === email && item.password === password);
         return data[0];
 
     },
