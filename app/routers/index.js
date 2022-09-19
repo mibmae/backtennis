@@ -19,11 +19,11 @@ router.get(`${baseUrl}/`, (_, response) => {
 });
 
 //routing vers les routes article
-router.use(`${baseUrl}/articles`, articleRouter);
+router.use(`/articles`, articleRouter);
 
 // Routing vers les routers secondaires
-router.use(`${baseUrl}/user`, userRouter);
-router.use(`${baseUrl}/auth`, authRouter);
+router.use(`/user`, userRouter);
+router.use(`/auth`, authRouter);
 
 // Gestion des erreurs 404 et 500
 router.use(errorsMiddleware.error404);
