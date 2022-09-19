@@ -27,7 +27,7 @@ const fakeclient = [
          rejectUnauthorized: false
      }
  });
-//  client.connect();
+ client.connect();
  
  //TODO with MySQL
  /**
