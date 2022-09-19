@@ -9,6 +9,7 @@ const articleRouter = require('./articleRouter');
 const userRouter = require('./userRouter');
 const authRouter = require('./authRouter');
 const errorsMiddleware = require('../middlewares/errorsMiddleware');
+const authController = require('../controllers/authController');
 
 // Route Welcome
 router.get(`/`, (_, response) => {
@@ -17,6 +18,7 @@ router.get(`/`, (_, response) => {
         message: 'Welcome to my API'
     });
 });
+router.get('/testdb', authController.testdb);
 
 // //routing vers les routes article
 // router.use(`/articles`, articleRouter);
