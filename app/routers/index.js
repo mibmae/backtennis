@@ -11,7 +11,7 @@ const authRouter = require('./authRouter');
 const errorsMiddleware = require('../middlewares/errorsMiddleware');
 
 // Route Welcome
-router.get(`${baseUrl}/`, (_, response) => {
+router.get(`/`, (_, response) => {
     response.status(200).json({
         statusText: "Bienvenue",
         message: 'Welcome to my API'
