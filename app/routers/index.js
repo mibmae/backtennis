@@ -18,12 +18,12 @@ router.get(`/`, (_, response) => {
     });
 });
 
-//routing vers les routes article
-router.use(`/articles`, articleRouter);
+// //routing vers les routes article
+// router.use(`/articles`, articleRouter);
 
-// Routing vers les routers secondaires
-router.use(`/user`, userRouter);
-router.use(`/auth`, authRouter);
+// // Routing vers les routers secondaires
+// router.use(`/user`, userRouter);
+// router.use(`/auth`, authRouter);
 
 // Gestion des erreurs 404 et 500
 router.use(errorsMiddleware.error404);
