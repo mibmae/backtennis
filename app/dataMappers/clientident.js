@@ -1,8 +1,8 @@
 const fakeclient = [
     {
         id: 1,
-        email: "aaa",
-        password: "aaa"
+        email: process.env.USER,
+        password: process.env.PASSWORD
     },
     {
         id: 2,

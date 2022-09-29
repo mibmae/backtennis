@@ -22,6 +22,12 @@ module.exports = {
         return data[0];
 
     },
+
+    async getUserById(request, response, next) {
+        const data = client.filter(item => item.id === request);
+        // console.log(data[0].email)
+        return data[0].email;
+    },
     
     async createUser(name, email, password) {
         

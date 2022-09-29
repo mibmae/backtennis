@@ -27,6 +27,7 @@ const secureByToken = {
     },
 
     verify(token) {
+        // console.log(jsonwebtoken.verify(token, secret))
         return jsonwebtoken.verify(token, secret);
     },
 

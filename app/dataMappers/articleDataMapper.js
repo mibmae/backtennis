@@ -2,17 +2,37 @@ const client = require('./client');
 
 module.exports = {
     async findAll() {
-
-        // ** Simulation :
         // const data = await client.query(`
-        //     SELECT * FROM xxx
+        //     SELECT * FROM articles where statut = 'true' ORDER by id DESC
         // `);
         const data = await client.query(`
-            SELECT * FROM articles where statut = 'true' ORDER by id DESC
+            SELECT * FROM articles where enligne = 'true' ORDER by date DESC
         `);
-        // const data = [...client];
         return data.rows;
     },
+
+    async findNext(id) {
+        const nextId = await client.query(`
+        Select * from articles where id > $1 AND enligne = 'true' LIMIT 1;
+    `, [id]);
+    if (nextId.rowCount > 0) {
+        return nextId.rows[0];
+        }
+
+    },
+    async findPrev(id) {
+        // const data = await (client.query(`SELECT id FROM bandeau`))
+        // console.log('ALLDATA', data.rows);
+        // console.log('ID CURRENT', id)
+        const prevId = await client.query(`
+        Select * from articles where id = (select max(id) from articles where id < $1) AND enligne = 'true';
+    `, [id]);
+    
+    if (prevId.rowCount > 0) {
+    return prevId.rows[0];
+    }
+    },
+
     async findAllAdmin() {
 
         // ** Simulation :
@@ -26,13 +46,9 @@ module.exports = {
         return data.rows;
     },
     async findById(id) {
-
-        // ** Simulation
         const data = await client.query(`
             SELECT * FROM articles where id = $1
         `, [ id ]);
-
-        // const data = client.filter(item => item.id == id);
         return data.rows;
     },
     async findBySlug(slug) {
@@ -49,12 +65,9 @@ module.exports = {
         // const data = client.filter(item => item.slug == slug);
         return data.rows;
     },
-    async addArticle(title, content, date) {
-        let str = title.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        str = str.replace(/'/g, '');
-        str = str.toLowerCase();
-        const slug = str.split(" ").join("");
-        const data = await client.query(`INSERT INTO articles(title, text, date, slug, statut) VALUES ($1, $2, $3, $4, false) RETURNING *`, [title, content, date, slug]);
+    async addArticle(title, content, date, addressImg) {
+        
+        const data = await client.query(`INSERT INTO articles(titre, date, enligne, image, contenu, vue) VALUES ($1, $2, 'true', $3, $4, 0) RETURNING *`, [title, date, addressImg, content]);
         return data;
     },
     async delArticle(id) {
@@ -62,12 +75,9 @@ module.exports = {
         return data.rowCount;
     },
 
-    async modifyArticle(id, title, content, date) {
-        let str = title.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        str = str.replace(/'/g, '');
-        str = str.toLowerCase();
-        const slug = str.split(" ").join("");
-        const data = await client.query(`UPDATE articles SET title = $1, text = $2, date = $3, slug = $4 WHERE id=$5`, [title, content, date, slug, id]);
+    async modifyArticle(datas) {
+        const { id, title, image, content } = datas;
+                const data = await client.query(`UPDATE articles SET titre = $1, contenu = $2, image = $3 WHERE id = $4`, [title, content, image, id]);
         return data;
     },
 
@@ -78,7 +88,13 @@ module.exports = {
     async modifyAllStatus(statut) {
         const data = await client.query(`UPDATE articles SET statut = $1`, [statut]);
         return data;
-    }
+    },
+
+    async toggleOnline(datas) {
+        const { id, status } = datas;
+        const data = await client.query(`UPDATE articles SET enligne = $2 WHERE id = $1`, [id, status])
+        return data.rowCount;
+    },
 }
 
 

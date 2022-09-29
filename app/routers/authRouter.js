@@ -6,6 +6,7 @@ const validationMiddleware = require('../middlewares/validationMiddleware');
 const userSchema = require('../middlewares/validationSchema/userSchema');
 
 // router.post('/signup', validationMiddleware.validateBody(userSchema), authController.signup);
-// router.post('/signin', authController.signin);
+router.post('/signin', authController.signin);
+router.post('/signinbytokenadmin', authController.signinByTokenAdmin);
 
 module.exports = router;

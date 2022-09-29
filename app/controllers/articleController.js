@@ -9,6 +9,24 @@ module.exports = {
             next(error);
         }
     },
+
+    async findNext(request, response, next) {
+        try {
+            const data = await articleDataMapper.findNext(request.params.id);
+            response.status(200).json({data});
+        } catch (error) {
+            next(error);
+        }
+    },
+    async findPrev(request, response, next) {
+        try {
+            const data = await articleDataMapper.findPrev(request.params.id);
+            response.status(200).json({data});
+        } catch (error) {
+            next(error);
+        }
+    },
+
     async findAllAdmin(_, response, next) {
         try {
             const data = await articleDataMapper.findAllAdmin();
@@ -52,9 +70,9 @@ module.exports = {
         
     },
     async addArticle(request, response, next) {
-        const { title, content, date } = request.body;
+        const { title, content, date, addressImg } = request.body;
         try {
-            const data = await articleDataMapper.addArticle(title, content, date)
+            const data = await articleDataMapper.addArticle(title, content, date, addressImg)
             if (data.length === 0) {
                 response.status(400).json({
                     message: 'Bad request',
@@ -81,9 +99,10 @@ module.exports = {
         }
     },
     async modifyArticle(request, response, next) {
-        const { title, content, date } = request.body;
+        // const { id, title, content, date } = request.body;
+        // console.log(request.body)
         try {
-            const data = await articleDataMapper.modifyArticle(request.params.id, title, content, date)
+            const data = await articleDataMapper.modifyArticle(request.body)
             if (data.length === 0) {
                 response.status(400).json({
                     message: 'Bad request',
@@ -126,5 +145,13 @@ module.exports = {
             next(error);
         }
     },
+    async toggleOnline(request, response, next) {
+        try {
+            const data = await articleDataMapper.toggleOnline(request.params);
+            response.status(200).json({data});
+        } catch (error) {
+            next(error);
+        }
+    }
 };
 

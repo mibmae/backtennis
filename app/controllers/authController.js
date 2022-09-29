@@ -32,7 +32,6 @@ module.exports = {
             SELECT * FROM articles
         `);
         // const data = [...client];
-        console.log(data.rows)
         response.status(200).json({
             message: "Bienvenue Maître",
             test: data.rows,
@@ -40,41 +39,74 @@ module.exports = {
         // return ('ok');
     },
 
-    // async signin(request, response, next) {
 
-    //     const { email, password } = request.body;
-    //     try {
-    //         const user = await authDataMapper.findUserByEmail(email, password);
-    //         if(user) {
-    //             response.status(200).json({
-    //                 message: "Bienvenue Maître"
-    //             }
-    //             );
-    //         } else {
-    //             response.status(404).json({
-    //                 message: "Il y a un problème !"
-    //             });
-    //         }
-    //         // if (!user) {
-    //         //     response.status(401).json({
-    //         //         message: "Authentication failed",
-    //         //         detail: "Invalid email"
-    //         //     });
-    //         // }
-    //         // if (await argon2.verify(user.password, password)) {
-    //         //     user.token = tokenHandler.generate(user);
-    //         //     response.status(200).json({
-    //         //         message: "Authentication succed",    
-    //         //         connected_user: user
-    //         //     });
-    //         // } else {
-    //         //     response.status(401).json({
-    //         //         message: "Authentication failed",
-    //         //         detail: "Invalid password"
-    //         //     });
-    //         // }
-    //     } catch (error) {
-    //         next(error);
-    //     }
-    // },
+    async signinByTokenAdmin(request, response, next) {
+        const { token } = request.body;
+        // console.log(token)
+        // if (token !== undefined) {
+        const tokenChecking = tokenHandler.verify(token);
+        // console.log(tokenChecking)
+        if (tokenChecking === "TokenExpiredError" || tokenChecking === "JsonWebTokenError") {
+        response.status(200).json({
+            msg: tokenChecking,
+        })
+     } else {
+        try {
+           const user = await authDataMapper.getUserById(tokenChecking.id)
+        //    console.log(user)
+           if(user) {
+            response.status(200).json({
+                user
+            })
+           }
+        } catch(error) {
+            next(error)
+        }
+        
+     }
+    // }
+ 
+    },
+
+    async signin(request, response, next) {
+        console.log('coucou')
+        const { email, password } = request.body;
+
+        try {
+            const user = await authDataMapper.findUserByEmail(email, password);
+            if(user) {
+               const token = tokenHandler.generate(user);
+                response.status(200).json({
+                    message: "Bienvenue Maître",
+                    user,
+                    token: token,
+                }
+                );
+            } else {
+                response.status(404).json({
+                    message: "Il y a un problème !"
+                });
+            }
+            // if (!user) {
+            //     response.status(401).json({
+            //         message: "Authentication failed",
+            //         detail: "Invalid email"
+            //     });
+            // }
+            // if (await argon2.verify(user.password, password)) {
+            //     user.token = tokenHandler.generate(user);
+            //     response.status(200).json({
+            //         message: "Authentication succed",    
+            //         connected_user: user
+            //     });
+            // } else {
+            //     response.status(401).json({
+            //         message: "Authentication failed",
+            //         detail: "Invalid password"
+            //     });
+            // }
+        } catch (error) {
+            next(error);
+        }
+    },
 };
