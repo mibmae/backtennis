@@ -3,7 +3,7 @@ const client = require('../dataMappers/client');
 const fs = require('fs');
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'}).single('file');
-const base = 'http://localhost:3000/uploads/'
+const base = 'https://backtennis.herokuapp.com/uploads/'
 
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
         fs.renameSync(`uploads/${req.file.filename}`, `uploads/${req.file.originalname}`)
         response.status(200).json({
             message: "Image ajoutée",
-            address: `http://localhost:3000/uploads/${req.file.originalname}`
+            address: `https://backtennis.herokuapp.com/uploads/${req.file.originalname}`
         })
         })
         

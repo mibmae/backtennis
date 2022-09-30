@@ -18,7 +18,7 @@
  router.get('/:id', controller.findById);
  router.get('/slug/:slug', controller.findBySlug);
  router.post('/secure/delete/:id',authMiddleware.verifyAdmin, controller.delArticle);
- router.post('/modify/:id', controller.modifyArticle);
+ router.post('/secure/modify/:id',authMiddleware.verifyAdmin, controller.modifyArticle);
  router.post('/modifystatut/:id/:statut', controller.modifyStatut);
  router.post('/modifyallstatus/:statut', controller.modifyAllStatut);
  router.post('/secure/add', authMiddleware.verifyAdmin, controller.addArticle);
