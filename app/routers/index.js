@@ -9,6 +9,7 @@ const articleRouter = require('./articleRouter');
 const userRouter = require('./userRouter');
 const authRouter = require('./authRouter');
 const picsRouter = require('./picsRouter');
+const pagingRouter = require('./pagingRouter');
 const bandeauRouter = require('./bandeauRouter');
 const errorsMiddleware = require('../middlewares/errorsMiddleware');
 const authController = require('../controllers/authController');
@@ -31,6 +32,7 @@ router.use(`/articles`, articleRouter);
 // router.use(`/user`, userRouter);
 router.use(`/auth`, authRouter);
 router.use(`/picture`, picsRouter);
+router.use(`/paging`, pagingRouter);
 
 // Gestion des erreurs 404 et 500
 router.use(errorsMiddleware.error404);

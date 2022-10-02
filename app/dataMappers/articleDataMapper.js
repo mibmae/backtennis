@@ -6,7 +6,7 @@ module.exports = {
         //     SELECT * FROM articles where statut = 'true' ORDER by id DESC
         // `);
         const data = await client.query(`
-            SELECT * FROM articles where enligne = 'true' ORDER by date DESC
+            SELECT * FROM articles where enligne = 'true' ORDER by id DESC
         `);
         return data.rows;
     },
