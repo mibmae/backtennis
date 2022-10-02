@@ -45,7 +45,7 @@ module.exports = {
         // console.log(token)
         // if (token !== undefined) {
         const tokenChecking = tokenHandler.verify(token);
-        // console.log(tokenChecking)
+        console.log(tokenChecking)
         if (tokenChecking === "TokenExpiredError" || tokenChecking === "JsonWebTokenError") {
         response.status(200).json({
             msg: tokenChecking,

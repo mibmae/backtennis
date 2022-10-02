@@ -14,8 +14,8 @@ module.exports = {
         fs.renameSync(`uploads/${req.file.filename}`, `uploads/${req.file.originalname}`)
         response.status(200).json({
             message: "Image ajoutée",
-            // address: `https://backtennis.herokuapp.com/uploads/${req.file.originalname}`
-            address: `http://localhost:3000//uploads/${req.file.originalname}`
+            address: `https://backtennis.herokuapp.com/uploads/${req.file.originalname}`
+            // address: `http://localhost:3000//uploads/${req.file.originalname}`
         })
         })
         
