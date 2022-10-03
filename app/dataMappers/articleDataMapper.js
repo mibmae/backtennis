@@ -51,6 +51,23 @@ module.exports = {
         `, [ id ]);
         return data.rows;
     },
+    async addVue(id) {
+
+        const data = await client.query(`
+            SELECT vue from articles WHERE id = $1
+        `, [ id ]);
+
+        const newVue = ++data.rows[0].vue;
+        const dataUpdate = await client.query(`
+            UPDATE articles SET vue = $2 WHERE id = $1
+        `, [ id, newVue ]);
+
+        const dataUpdated = await client.query(`
+            SELECT vue from articles WHERE id = $1
+        `, [ id ]);
+
+        return dataUpdated.rows[0];
+    },
     async findBySlug(slug) {
 
         // ** Simulation

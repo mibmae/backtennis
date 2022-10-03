@@ -17,6 +17,7 @@
 
  router.get('/:id', controller.findById);
  router.get('/slug/:slug', controller.findBySlug);
+ router.post('/vues/:id', controller.AddVues);
  router.post('/secure/delete/:id',authMiddleware.verifyAdmin, controller.delArticle);
  router.post('/secure/modify/:id',authMiddleware.verifyAdmin, controller.modifyArticle);
  router.post('/modifystatut/:id/:statut', controller.modifyStatut);

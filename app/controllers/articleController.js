@@ -35,6 +35,14 @@ module.exports = {
             next(error);
         }
     },
+    async AddVues(_, response, next) {
+        try {
+            const data = await articleDataMapper.addVue(_.params.id);
+            response.status(200).json({data});
+        } catch (error) {
+            next(error);
+        }
+    },
     async findById(request, response, next) {
         const { id } = request.params;
         try {
