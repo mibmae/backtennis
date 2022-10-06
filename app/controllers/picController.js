@@ -3,8 +3,8 @@ const client = require('../dataMappers/client');
 const fs = require('fs');
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'}).single('file');
-// const base = 'https://backtennis.herokuapp.com/uploads/'
-const base = 'http://localhost:3000/uploads/'
+const base = 'https://backtennis.herokuapp.com/uploads/'
+//const base = 'http://localhost:3000/uploads/'
 
 
 module.exports = {
