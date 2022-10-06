@@ -19,7 +19,7 @@
 //  router.get('/del/:id', controller.delArticle);
  router.post('/modify/:id', controller.modifyBandeau);
   router.post('/secure/add', authMiddleware.verifyAdmin, controller.addBandeau);
-  router.post('/delete/:id', controller.deleteBandeau);
+  router.post('/secure/delete/:id', controller.deleteBandeau);
   router.post('/secure/toggle/:id/:status', authMiddleware.verifyAdmin, controller.toggleOnline);
 //  router.post('/modifystatut/:id/:statut', controller.modifyStatut);
 //  router.post('/modifyallstatus/:statut', controller.modifyAllStatut);

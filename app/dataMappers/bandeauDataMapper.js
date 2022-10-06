@@ -61,6 +61,7 @@ module.exports = {
     },
     async deleteBandeau(id) {
         const data = await client.query(`DELETE from bandeau WHERE id = $1`, [id])
+        console.log(data.rowCount)
         return data.rowCount;
     },
     async toggleOnline(datas) {
