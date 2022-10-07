@@ -19,9 +19,8 @@ module.exports = {
     },
     async findNext(id) {
         const nextId = await client.query(`
-        Select * from bandeau where id > $1 LIMIT 1;
+        Select * from bandeau where id > $1 ORDER BY ID LIMIT 1
     `, [id]);
-    console.log(nextId.rowCount)
     if (nextId.rowCount > 0) {
         return nextId.rows[0];
         }
@@ -32,7 +31,7 @@ module.exports = {
         // console.log('ALLDATA', data.rows);
         // console.log('ID CURRENT', id)
         const prevId = await client.query(`
-        Select * from bandeau where id = (select max(id) from bandeau where id < $1) ;
+        Select * from bandeau where id = (select max(id) from bandeau where id < $1)
     `, [id]);
     
     if (prevId.rowCount > 0) {
