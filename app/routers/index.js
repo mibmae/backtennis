@@ -14,6 +14,7 @@ const bandeauRouter = require('./bandeauRouter');
 const errorsMiddleware = require('../middlewares/errorsMiddleware');
 const authController = require('../controllers/authController');
 const mailController = require('../controllers/mailController');
+const searchController = require('../controllers/searchController');
 
 // Route Welcome
 router.get(`/`, (_, response) => {
@@ -35,6 +36,7 @@ router.use(`/auth`, authRouter);
 router.use(`/picture`, picsRouter);
 router.use(`/paging`, pagingRouter);
 router.post(`/mail`, mailController.sendMail);
+router.post(`/search/:term`, searchController.search);
 
 // Gestion des erreurs 404 et 500
 router.use(errorsMiddleware.error404);

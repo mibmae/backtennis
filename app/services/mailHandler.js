@@ -68,7 +68,7 @@ const mailHandler = {
             <img src="https://salindrestennis.netlify.app/images/b9b3a522d922cc167205c5d56c21b85e.png" class="image">
                 <body>
                 <h1>Nouveau message depuis le site !</h1>
-                <div>${body.nom} vous a envoyer un message : <br />
+                <div>${body.nom} vous a envoyé un message : <br />
                     ${body.msg} <br />
                     Son numéro de téléphone est : ${body.tel} <br />
                     Son e-mail : ${body.email}
