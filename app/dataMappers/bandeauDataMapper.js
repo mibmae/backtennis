@@ -3,7 +3,7 @@ const client = require('./client');
 module.exports = {
     async findAll() {
         const data = await client.query(`
-        SELECT * FROM bandeau where enligne = 'true' ORDER by date DESC
+        SELECT * FROM bandeau where enligne = 'true' ORDER by id DESC
     `);
     // console.log(data.rows)
     // const data = [...client];
