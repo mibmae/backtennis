@@ -69,13 +69,14 @@ module.exports = {
     },
 
     async signin(request, response, next) {
-        console.log('coucou')
+ 
         const { email, password } = request.body;
-
-        try {
-            const user = await authDataMapper.findUserByEmail(email, password);
-            if(user) {
-               const token = tokenHandler.generate(user);
+        const hashedPassword = await argon2.hash(password);
+        // console.log(hashedPassword)
+        const user = await argon2.verify(process.env.ADMIN2PASSWORD, password);
+        // console.log('user', user)
+        if ((email === process.env.ADMIN1EMAIL && await argon2.verify(process.env.ADMIN1PASSWORD, password)) || (email === process.env.ADMIN2EMAIL && await argon2.verify(process.env.ADMIN2PASSWORD, password))) {
+            const token = tokenHandler.generate(user);
                 response.status(200).json({
                     message: "Bienvenue Maître",
                     user,
@@ -84,9 +85,36 @@ module.exports = {
                 );
             } else {
                 response.status(404).json({
-                    message: "Il y a un problème !"
-                });
+                                message: "Il y a un problème !"
+                            });
             }
+        // if ((email === process.env.ADMIN2EMAIL && await argon2.verify(process.env.ADMIN2PASSWORD, password))) {
+        //     const token = tokenHandler.generate(user);
+        //         response.status(200).json({
+        //             message: "Bienvenue Maître",
+        //             user,
+        //             token: token,
+        //         }
+        //         );
+        //     }
+        
+        // try {
+        //     const hashedPassword = await argon2.hash(password);
+        //     console.log(hashedPassword)
+        //     const user = await authDataMapper.findUserByEmail(email, password);
+        //     if(user) {
+        //        const token = tokenHandler.generate(user);
+        //         response.status(200).json({
+        //             message: "Bienvenue Maître",
+        //             user,
+        //             token: token,
+        //         }
+        //         );
+        //     } else {
+        //         response.status(404).json({
+        //             message: "Il y a un problème !"
+        //         });
+        //     }
             // if (!user) {
             //     response.status(401).json({
             //         message: "Authentication failed",
@@ -105,8 +133,8 @@ module.exports = {
             //         detail: "Invalid password"
             //     });
             // }
-        } catch (error) {
-            next(error);
-        }
+        // } catch (error) {
+        //     next(error);
+        // }
     },
 };

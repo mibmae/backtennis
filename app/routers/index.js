@@ -36,7 +36,8 @@ router.use(`/auth`, authRouter);
 router.use(`/picture`, picsRouter);
 router.use(`/paging`, pagingRouter);
 router.post(`/mail`, mailController.sendMail);
-router.post(`/search/:term`, searchController.search);
+router.post(`/search/articles/:term`, searchController.search);
+router.post(`/search/bandeau/:term`, searchController.searchBandeau);
 
 // Gestion des erreurs 404 et 500
 router.use(errorsMiddleware.error404);

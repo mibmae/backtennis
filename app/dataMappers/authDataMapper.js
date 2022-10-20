@@ -18,7 +18,10 @@ module.exports = {
         // return data.rows[0];
 
         // ** Simulation avec de la fake data
-        const data = client.filter(item => item.email === email && item.password === password);
+        // const hashedPassword = await argon2.hash(password);
+        if(await argon2.verify(result1.rows[0].password, password)) { console.log('ok') }
+        const data = client.filter(item => item.email === email && item.password === hashedPassword);
+        // const data = client.filter(item => item.email === email && item.password === hashedPassword);
         return data[0];
 
     },
